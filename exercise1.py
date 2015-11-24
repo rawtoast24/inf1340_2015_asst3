@@ -52,8 +52,12 @@ def selection(t, f):
     [["A", "B", "C"], [4, 5, 6]]
 
     """
+    t = f(t)
 
-    return []
+    if t == []:
+        t = None
+
+    return t
 
 
 def projection(t, r):
