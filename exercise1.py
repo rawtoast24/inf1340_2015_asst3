@@ -100,15 +100,59 @@ def selection(t1, f):
 
 def projection(t, r):
     """
-    Perform projection operation on table t using the attributes subset r.
-
+    Perform projection operation on table t
+    using the attributes subset r.
     Example:
     > R = [["A", "B", "C"], [1, 2, 3], [4, 5, 6]]
     > projection(R, ["A", "C"])
     [["A", "C"], [1, 3], [4, 6]]
-
     """
-    return
+    # i tracks which row within the table is being compared. 
+    i = 0
+    # j tracks which row within the table is being compared.
+    j = 0
+    # k tracks the spot for the attribute list. 
+    k = 0
+    result = [[]]
+    match_list = []
+    
+	if len(t[0]) < len(r):
+		raise UnknownAttributeException
+		
+	try:
+        # while i < len(r):
+        #     while k < len(t[j]):
+        #         if r[i] == t[j][k]:
+        #             while j < len(t):
+        #                 result.append(t[j][k])
+        #                 j += 1
+        #         j = 0
+        #         k += 1
+        #     k = 0
+        #     i += 1
+
+        while k < len(r):
+            while j < len(t[i]):
+                if t[i][j] == r[k]:
+                    result[i].append(t[i][j])
+                    match_list.append(j)
+                j += 1
+            # if j == len(t[i]) and k == len(r):
+            #     result.append(sub_result)
+            j = 0
+            k += 1
+
+        i = 1
+        while i < len(t):
+            result.append([])
+            for numeral in match_list:
+                result[len(result)-1].append(t[i][numeral])
+            i += 1
+
+    except AssertionError:
+        raise UnknownAttributeException
+
+    return result
 
 
 def cross_product(t1, t2):
