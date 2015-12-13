@@ -177,6 +177,8 @@ def decide(input_file, countries_file):
                 else:
                     decision.append("Accept")
 
+# REQUIRED_FIELDS = ["passport", "first_name", "last_name",
+#                    "birth_date", "home", "entry_reason", "from"]
         # Step 2. Check all locations
         if entry_record[a]["from"]["country"] not in country_list:
             decision.append("Reject")

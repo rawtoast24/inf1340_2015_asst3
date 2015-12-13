@@ -15,7 +15,7 @@ GRADUATES = [["Number", "Surname", "Age"],
 
 R3 = [[1, 2, 3]]
 
-#!/usr/bin/env python3
+# !/usr/bin/env python3
 
 """ Assignment 3, Exercise 2, INF1340, Fall, 2015. DBMS
 
@@ -95,7 +95,7 @@ def selection(t1, f):
         result = None
     return result
 
-#print selection(EMPLOYEES,filter_employees)
+# print selection(EMPLOYEES,filter_employees)
 
 
 def projection(t, r):
@@ -116,21 +116,10 @@ def projection(t, r):
     result = [[]]
     match_list = []
     
-	if len(t[0]) < len(r):
-		raise UnknownAttributeException
-		
-	try:
-        # while i < len(r):
-        #     while k < len(t[j]):
-        #         if r[i] == t[j][k]:
-        #             while j < len(t):
-        #                 result.append(t[j][k])
-        #                 j += 1
-        #         j = 0
-        #         k += 1
-        #     k = 0
-        #     i += 1
+    if len(t[0]) < len(r):
+        raise UnknownAttributeException
 
+    try:
         while k < len(r):
             while j < len(t[i]):
                 if t[i][j] == r[k]:
@@ -182,4 +171,4 @@ def cross_product(t1, t2):
 
     return result
 
-#print cross_product(R2, GRADUATES)
+# print cross_product(R2, GRADUATES)
