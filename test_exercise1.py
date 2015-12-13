@@ -29,6 +29,14 @@ R2 = [["Department", "Head"],
 
 R3 = [[]]
 
+R4 = [["A", "B"]]
+
+R5 = [["C","D"]]
+
+R6 = [["A", "B"], [1,2], [3,4]]
+
+R7 = [["C", "D"], [5,6]]
+
 GRADUATES = [["Number", "Surname", "Age"],
              [7274, "Robinson", 37],
              ["Surname", "O'Malley", 39],
@@ -75,33 +83,39 @@ def test_selection():
     assert selection(R3, filter_employees) is None
 
 
-def test_projection():
-    """
-    Test projection operation.
-    """
-
-    result = [["Surname", "FirstName"],
-              ["Smith", "Mary"],
-              ["Black", "Lucy"],
-              ["Verdi", "Nico"],
-              ["Smith", "Mark"]]
-
-    assert is_equal(result, projection(EMPLOYEES, ["Surname", "FirstName"]))
-    assert projection(GRADUATES, ) is None
-    assert projection(R3, filter_employees()) is None
-#
-#
-# def test_cross_product():
+# def test_projection():
 #     """
-#     Test cross product operation.
+#     Test projection operation.
 #     """
 #
-#     result = [["Employee", "Department", "Department", "Head"],
-#               ["Smith", "sales", "production", "Mori"],
-#               ["Smith", "sales", "sales", "Brown"],
-#               ["Black", "production", "production", "Mori"],
-#               ["Black", "production", "sales", "Brown"],
-#               ["White", "production", "production", "Mori"],
-#               ["White", "production", "sales", "Brown"]]
+#     result = [["Surname", "FirstName"],
+#               ["Smith", "Mary"],
+#               ["Black", "Lucy"],
+#               ["Verdi", "Nico"],
+#               ["Smith", "Mark"]]
 #
-#     assert is_equal(result, cross_product(R1, R2))
+#     assert is_equal(result, projection(EMPLOYEES, ["Surname", "FirstName"]))
+#     assert projection(GRADUATES, ) is None
+#     assert projection(R3, filter_employees()) is None
+# #
+#
+def test_cross_product():
+    """
+    Test cross product operation.
+    """
+
+    result = [["Employee", "Department", "Department", "Head"],
+              ["Smith", "sales", "production", "Mori"],
+              ["Smith", "sales", "sales", "Brown"],
+              ["Black", "production", "production", "Mori"],
+              ["Black", "production", "sales", "Brown"],
+              ["White", "production", "production", "Mori"],
+              ["White", "production", "sales", "Brown"]]
+
+    result2 = [["A", "B", "C", "D"],
+               [1, 2, 5, 6],
+               [3, 4, 5, 6]]
+
+    assert is_equal(result, cross_product(R1, R2))
+    assert is_equal(result2, cross_product(R6, R7))
+    assert cross_product(R4, R5) is None
