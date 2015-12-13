@@ -73,23 +73,22 @@ def test_selection():
     assert is_equal(result, selection(EMPLOYEES, filter_employees))
     assert selection(GRADUATES, filter_employees) is None
     assert selection(R3, filter_employees) is None
-    assert is_equal(result, selection(EMPLOYEES, filter_employees))
 
 
+def test_projection():
+    """
+    Test projection operation.
+    """
 
+    result = [["Surname", "FirstName"],
+              ["Smith", "Mary"],
+              ["Black", "Lucy"],
+              ["Verdi", "Nico"],
+              ["Smith", "Mark"]]
 
-# def test_projection():
-#     """
-#     Test projection operation.
-#     """
-#
-#     result = [["Surname", "FirstName"],
-#               ["Smith", "Mary"],
-#               ["Black", "Lucy"],
-#               ["Verdi", "Nico"],
-#               ["Smith", "Mark"]]
-#
-#     assert is_equal(result, projection(EMPLOYEES, ["Surname", "FirstName"]))
+    assert is_equal(result, projection(EMPLOYEES, ["Surname", "FirstName"]))
+    assert projection(GRADUATES, ) is None
+    assert projection(R3, filter_employees()) is None
 #
 #
 # def test_cross_product():

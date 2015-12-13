@@ -13,6 +13,7 @@ GRADUATES = [["Number", "Surname", "Age"],
              ["Surname", "O'Malley", 39],
              [9824, "Darkes", 38]]
 
+
 #!/usr/bin/env python3
 
 """ Assignment 3, Exercise 2, INF1340, Fall, 2015. DBMS
@@ -66,7 +67,7 @@ class UnknownAttributeException(Exception):
     pass
 
 
-def selection(t, f):
+def selection(t1, f):
     """
     Perform select operation on table t that satisfy condition f.
 
@@ -93,12 +94,12 @@ def selection(t, f):
         result = None
     return result
 
-print selection(EMPLOYEES,filter_employees)
+#print selection(EMPLOYEES,filter_employees)
+
 
 def projection(t, r):
     """
-    Perform projection operation on table t
-    using the attributes subset r.
+    Perform projection operation on table t using the attributes subset r.
 
     Example:
     > R = [["A", "B", "C"], [1, 2, 3], [4, 5, 6]]
@@ -106,8 +107,50 @@ def projection(t, r):
     [["A", "C"], [1, 3], [4, 6]]
 
     """
+    # i tracks the spot for the attribute list
+    i = 0
+    # j tracks which row within the table is being compared
+    j = 0
+    # k tracks which item within the row is being compared
+    k = 0
+    result = [[]]
+    match_list = []
+    try:
+        # while i < len(r):
+        #     while k < len(t[j]):
+        #         if r[i] == t[j][k]:
+        #             while j < len(t):
+        #                 result.append(t[j][k])
+        #                 j += 1
+        #         j = 0
+        #         k += 1
+        #     k = 0
+        #     i += 1
 
-    return []
+        while k < len(r):
+            while j < len(t[i]):
+                if t[i][j] == r[k]:
+                    result[i].append(t[i][j])
+                    match_list.append(j)
+                j += 1
+            # if j == len(t[i]) and k == len(r):
+            #     result.append(sub_result)
+            j = 0
+            k += 1
+
+        i = 1
+        while i < len(t):
+            result.append([])
+            for numeral in match_list:
+                result[len(result)-1].append(t[i][numeral])
+            i += 1
+
+    except AssertionError:
+        raise UnknownAttributeException
+
+    return result
+
+#print projection(GRADUATES, ["Pay", "Department"])
 
 
 def cross_product(t1, t2):
@@ -119,8 +162,22 @@ def cross_product(t1, t2):
     > R2 = [["C", "D"], [5,6]]
     [["A", "B", "C", "D"], [1, 2, 5, 6], [3, 4, 5, 6]]
 
-
     """
+    i = 1
+    j = 1
+    # result = []
+    # pass
 
-    return []
+    result = [t1[0] + t2[0]]
+    while i < len(t1):
+        while j < len(t2):
+            result.append(t1[i]+t2[j])
+            j += 1
+        j = 1
+        i += 1
+    if len(result) == 1:
+        result = None
 
+    return result
+
+#print cross_product(R2, GRADUATES)
