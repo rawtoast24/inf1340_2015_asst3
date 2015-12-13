@@ -1,3 +1,18 @@
+EMPLOYEES = [["Surname", "FirstName", "Age", "Salary"],
+             ["Smith", "Mary", 25, 2000],
+             ["Black", "Lucy", 40, 3000],
+             ["Verdi", "Nico", 36, 4500],
+             ["Smith", "Mark", 40, 3900]]
+
+R2 = [["Department", "Head"],
+      ["production", "Mori"],
+      ["sales", "Brown"]]
+
+GRADUATES = [["Number", "Surname", "Age"],
+             [7274, "Robinson", 37],
+             ["Surname", "O'Malley", 39],
+             [9824, "Darkes", 38]]
+
 #!/usr/bin/env python3
 
 """ Assignment 3, Exercise 2, INF1340, Fall, 2015. DBMS
@@ -31,6 +46,18 @@ def remove_duplicates(l):
     return result
 
 
+def filter_employees(row):
+    """
+    Check if employee represented by row
+    is AT LEAST 30 years old and makes
+    MORE THAN 3500.
+    :param row: A List in the format:
+        [{Surname}, {FirstName}, {Age}, {Salary}]
+    :return: True if the row satisfies the condition.
+    """
+    return row[-2] >= 300 and row[-1] > 3500
+
+
 class UnknownAttributeException(Exception):
     """
     Raised when attempting set operations on a table
@@ -39,7 +66,7 @@ class UnknownAttributeException(Exception):
     pass
 
 
-def selection(t, f):
+def selection(t1, f):
     """
     Perform select operation on table t that satisfy condition f.
 
@@ -52,13 +79,21 @@ def selection(t, f):
     [["A", "B", "C"], [4, 5, 6]]
 
     """
-    t = f(t)
+    i = 1
+    result = []
+    pass
+    result.append(t1[0])
+    while i < len(t1):
+        if f(t1[i]):
+            result.append(t1[i])
+        i += 1
+    if len(result) == 1:
+        result = None
+    if len(t1) < 2:
+        result = None
+    return result
 
-    if t == []:
-        t = None
-
-    return t
-
+print selection(EMPLOYEES,filter_employees)
 
 def projection(t, r):
     """
