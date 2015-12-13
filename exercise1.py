@@ -52,12 +52,12 @@ def selection(t, f):
     [["A", "B", "C"], [4, 5, 6]]
 
     """
-    t = f(t)
+    new_t = f(t)
 
-    if t == []:
-        t = None
+    if new_t == []:
+        new_t = None
 
-    return t
+    return new_t
 
 
 def projection(t, r):
@@ -88,4 +88,3 @@ def cross_product(t1, t2):
     """
 
     return []
-
