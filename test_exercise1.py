@@ -5,12 +5,6 @@
 Test module for exercise3.py
 
 """
-
-__author__ = 'Susan Sim'
-__email__ = "ses@drsusansim.org"
-__copyright__ = "2015 Susan Sim"
-__license__ = "MIT License"
-
 from exercise1 import selection, projection, cross_product
 
 
@@ -33,16 +27,19 @@ R2 = [["Department", "Head"],
       ["production", "Mori"],
       ["sales", "Brown"]]
 
+R3 = [[]]
+
+GRADUATES = [["Number", "Surname", "Age"],
+             [7274, "Robinson", 37],
+             ["Surname", "O'Malley", 39],
+             [9824, "Darkes", 38]]
+
 
 #####################
 # HELPER FUNCTIONS ##
 #####################
 def is_equal(t1, t2):
-
-    t1.sort()
-    t2.sort()
-
-    return t1 == t2
+    return sorted(t1) == sorted(t2)
 
 
 #####################
@@ -74,6 +71,11 @@ def test_selection():
               ["Smith", "Mark", 40, 3900]]
 
     assert is_equal(result, selection(EMPLOYEES, filter_employees))
+    assert selection(GRADUATES, filter_employees) is None
+    assert selection(R3, filter_employees) is None
+    # assert is_equal(result, selection(EMPLOYEES, filter_employees))
+
+
 
 
 def test_projection():
