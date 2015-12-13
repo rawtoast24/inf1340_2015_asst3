@@ -243,4 +243,4 @@ def decide(input_file, countries_file):
 
     return result
 
-# print decide("Entry_Record.json", "countries.json")
+print decide("entry_records.json", "countries.json")
