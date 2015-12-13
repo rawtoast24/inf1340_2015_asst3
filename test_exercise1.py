@@ -73,36 +73,36 @@ def test_selection():
     assert is_equal(result, selection(EMPLOYEES, filter_employees))
     assert selection(GRADUATES, filter_employees) is None
     assert selection(R3, filter_employees) is None
-    # assert is_equal(result, selection(EMPLOYEES, filter_employees))
+    assert is_equal(result, selection(EMPLOYEES, filter_employees))
 
 
 
 
-def test_projection():
-    """
-    Test projection operation.
-    """
-
-    result = [["Surname", "FirstName"],
-              ["Smith", "Mary"],
-              ["Black", "Lucy"],
-              ["Verdi", "Nico"],
-              ["Smith", "Mark"]]
-
-    assert is_equal(result, projection(EMPLOYEES, ["Surname", "FirstName"]))
-
-
-def test_cross_product():
-    """
-    Test cross product operation.
-    """
-
-    result = [["Employee", "Department", "Department", "Head"],
-              ["Smith", "sales", "production", "Mori"],
-              ["Smith", "sales", "sales", "Brown"],
-              ["Black", "production", "production", "Mori"],
-              ["Black", "production", "sales", "Brown"],
-              ["White", "production", "production", "Mori"],
-              ["White", "production", "sales", "Brown"]]
-
-    assert is_equal(result, cross_product(R1, R2))
+# def test_projection():
+#     """
+#     Test projection operation.
+#     """
+#
+#     result = [["Surname", "FirstName"],
+#               ["Smith", "Mary"],
+#               ["Black", "Lucy"],
+#               ["Verdi", "Nico"],
+#               ["Smith", "Mark"]]
+#
+#     assert is_equal(result, projection(EMPLOYEES, ["Surname", "FirstName"]))
+#
+#
+# def test_cross_product():
+#     """
+#     Test cross product operation.
+#     """
+#
+#     result = [["Employee", "Department", "Department", "Head"],
+#               ["Smith", "sales", "production", "Mori"],
+#               ["Smith", "sales", "sales", "Brown"],
+#               ["Black", "production", "production", "Mori"],
+#               ["Black", "production", "sales", "Brown"],
+#               ["White", "production", "production", "Mori"],
+#               ["White", "production", "sales", "Brown"]]
+#
+#     assert is_equal(result, cross_product(R1, R2))
