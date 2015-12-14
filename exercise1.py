@@ -106,7 +106,8 @@ def projection(t, r):
     j = 0
     # k tracks the spot for the attribute list. 
     k = 0
-    result = [[]]
+    
+	result = [[]]
     match_list = []
     
     if len(t[0]) < len(r):
@@ -119,8 +120,6 @@ def projection(t, r):
                     result[i].append(t[i][j])
                     match_list.append(j)
                 j += 1
-            # if j == len(t[i]) and k == len(r):
-            #     result.append(sub_result)
             j = 0
             k += 1
 
