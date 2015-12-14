@@ -85,17 +85,16 @@ def selection(t1, f):
     result = []
     pass
     result.append(t1[0])
+    # iterates through table
     while i < len(t1):
         if f(t1[i]):
             result.append(t1[i])
         i += 1
+    # if table only has schema column
     if len(result) == 1:
-        result = None
-    if len(t1) < 2:
         result = None
     return result
 
-#print selection(EMPLOYEES,filter_employees)
 
 
 def projection(t, r):
@@ -123,19 +122,21 @@ def cross_product(t1, t2):
     """
     i = 1
     j = 1
-    # result = []
-    # pass
 
+    # merge table schemas
     result = [t1[0] + t2[0]]
+    # iterates through table1
     while i < len(t1):
+        # iterates through table2
         while j < len(t2):
             result.append(t1[i]+t2[j])
             j += 1
         j = 1
         i += 1
+        # if tables only have schema column
     if len(result) == 1:
         result = None
 
     return result
 
-#print cross_product(R2, GRADUATES)
+
