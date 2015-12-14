@@ -150,6 +150,7 @@ def decide(input_file, countries_file):
     for country in country_dictionary:
         if country_dictionary[country]["medical_advisory"] != "":
             medical_alert.append(country_dictionary[country]["code"])
+
     while a < len(entry_record):
         # create a list to store the decision for each check within a record
         decision = []
@@ -177,6 +178,8 @@ def decide(input_file, countries_file):
                 else:
                     decision.append("Accept")
 
+# REQUIRED_FIELDS = ["passport", "first_name", "last_name",
+#                    "birth_date", "home", "entry_reason", "from"]
         # Step 2. Check all locations
         if entry_record[a]["from"]["country"] not in country_list:
             decision.append("Reject")
@@ -244,3 +247,5 @@ def decide(input_file, countries_file):
     return result
 
 print decide("entry_records.json", "countries.json")
+
+# 2nd person in entry records should be rejected - need to check if reason for entry matches home country
