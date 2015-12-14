@@ -22,11 +22,6 @@ R3 = [[1, 2, 3]]
 This module performs table operations on database tables
 implemented as lists of lists. """
 
-__author__ = 'Susan Sim'
-__email__ = "ses@drsusansim.org"
-__copyright__ = "2015 Susan Sim"
-__license__ = "MIT License"
-
 
 #####################
 # HELPER FUNCTIONS ##
@@ -94,8 +89,6 @@ def selection(t1, f):
     if len(result) == 1:
         result = None
     return result
-
-# print selection(EMPLOYEES,filter_employees)
 
 
 def projection(t, r):
