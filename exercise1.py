@@ -15,17 +15,12 @@ GRADUATES = [["Number", "Surname", "Age"],
 
 R3 = [[1, 2, 3]]
 
-# !/usr/bin/env python3
+#!/usr/bin/env python3
 
 """ Assignment 3, Exercise 2, INF1340, Fall, 2015. DBMS
 
 This module performs table operations on database tables
 implemented as lists of lists. """
-
-__author__ = 'Susan Sim'
-__email__ = "ses@drsusansim.org"
-__copyright__ = "2015 Susan Sim"
-__license__ = "MIT License"
 
 
 #####################
@@ -85,17 +80,15 @@ def selection(t1, f):
     result = []
     pass
     result.append(t1[0])
+    # iterates through table
     while i < len(t1):
         if f(t1[i]):
             result.append(t1[i])
         i += 1
+    # if table only has schema column
     if len(result) == 1:
         result = None
-    if len(t1) < 2:
-        result = None
     return result
-
-# print selection(EMPLOYEES,filter_employees)
 
 
 def projection(t, r):
@@ -113,7 +106,8 @@ def projection(t, r):
     j = 0
     # k tracks the spot for the attribute list. 
     k = 0
-    result = [[]]
+    
+	result = [[]]
     match_list = []
     
     if len(t[0]) < len(r):
@@ -126,8 +120,6 @@ def projection(t, r):
                     result[i].append(t[i][j])
                     match_list.append(j)
                 j += 1
-            # if j == len(t[i]) and k == len(r):
-            #     result.append(sub_result)
             j = 0
             k += 1
 
@@ -156,19 +148,21 @@ def cross_product(t1, t2):
     """
     i = 1
     j = 1
-    # result = []
-    # pass
 
+    # merge table schemas
     result = [t1[0] + t2[0]]
+    # iterates through table1
     while i < len(t1):
+        # iterates through table2
         while j < len(t2):
             result.append(t1[i]+t2[j])
             j += 1
         j = 1
         i += 1
+        # if tables only have schema column
     if len(result) == 1:
         result = None
 
     return result
 
-# print cross_product(R2, GRADUATES)
+
