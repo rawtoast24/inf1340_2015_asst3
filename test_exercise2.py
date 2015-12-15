@@ -24,5 +24,11 @@ def test_returning():
     Travellers are returning to KAN.
     """
     assert decide("test_returning_citizen.json", "countries.json") ==\
-        ["Accept", "Accept", "Quarantine"]
+        ["Accept", "Reject", "Quarantine"]
 
+def test_visitors():
+    """
+    Travellers that I visiting KAN. All their documents have to be filled and have appropriate entries
+    """
+    assert decide("test_visitor.json", "countries.json") ==\
+        ["Reject", "Reject", "Quarantine", "Accept"]
