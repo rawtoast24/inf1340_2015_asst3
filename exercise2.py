@@ -37,6 +37,7 @@ COUNTRIES = None
 #####################
 # HELPER FUNCTIONS ##
 #####################
+# Date Verification
 def is_more_than_x_years_ago(x, date_string):
     """
     Check if date is less than x years ago.
@@ -52,7 +53,7 @@ def is_more_than_x_years_ago(x, date_string):
 
     return (date - x_years_ago).total_seconds() < 0
 
-
+# Passport Format Verification
 def valid_passport_format(passport_number):
     """
     Checks whether a pasport number is five sets of five alpha-number characters separated by dashes
@@ -68,7 +69,7 @@ def valid_passport_format(passport_number):
         result = True
     return result
 
-
+#Visa Format Verification
 def valid_visa_format(visa_code):
     """
     Checks whether a visa code is two groups of five alphanumeric characters
@@ -85,7 +86,7 @@ def valid_visa_format(visa_code):
 
     return result
 
-
+#Date Formate Verification
 def valid_date_format(date_string):
     """
     Checks whether a date has the format YYYY-MM-DD in numbers
@@ -110,7 +111,7 @@ def valid_date_format(date_string):
 
     return result
 
-
+#Vetting Process - Accept/Reject/Quarantine
 def decide(input_file, countries_file):
     """
     Decides whether a traveller's entry into Kanadia should be accepted
