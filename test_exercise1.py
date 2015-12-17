@@ -88,16 +88,16 @@ def test_projection():
     Test projection operation.
     """
 
-    result = [["Surname", "FirstName"],
-              ["Smith", "Mary"],
-              ["Black", "Lucy"],
-              ["Verdi", "Nico"],
-              ["Smith", "Mark"]]
+    result = [["Surname", "FirstName"], ["Smith", "Mary"], ["Black", "Lucy"], ["Verdi", "Nico"], ["Smith", "Mark"]]
 
+    result1 = [["Surname"], ["Smith"], ["Black"], ["Verdi"], ["Smith"]]
 
     assert is_equal(result, projection(EMPLOYEES, ["Surname", "FirstName"]))
-    assert (projection(EMPLOYEES, ["Surname", "MiddleName", "FirstName"])) is AttributeError
+    assert is_equal(result1, projection(EMPLOYEES, ["Surname"]))
 
+    with pytest.raises(AssertionError):
+        assert projection(EMPLOYEES, ["Surname", "MiddleName", "FirstName"])
+    # assert is_equal(result, projection(EMPLOYEES, ["Surname", "FirstName"]))
 
 def test_cross_product():
     """

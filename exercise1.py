@@ -115,7 +115,6 @@ def projection(t, r):
                 j += 1
             j = 0
             k += 1
-
         i = 1
         while i < len(t):
             result.append([])
@@ -124,9 +123,14 @@ def projection(t, r):
             i += 1
 
     except AssertionError:
-        raise UnknownAttributeException
+        for item in r:
+            for header in t:
+                if r[item] not in t[header]:
+                    raise UnknownAttributeException
 
     return result
+
+print projection(EMPLOYEES, ["Surname"])
 
 
 def cross_product(t1, t2):
