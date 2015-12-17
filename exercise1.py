@@ -32,7 +32,6 @@ def remove_duplicates(l):
     Removes duplicates from l, where l is a List of Lists.
     :param l: a List
     """
-
     d = {}
     result = []
     for row in l:
@@ -164,5 +163,3 @@ def cross_product(t1, t2):
         result = None
 
     return result
-
-
