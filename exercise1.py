@@ -15,7 +15,19 @@ GRADUATES = [["Number", "Surname", "Age"],
 
 R3 = [[1, 2, 3]]
 
-#!/usr/bin/env python3
+
+def filter_employees(row):
+    """
+    Check if employee represented by row
+    is AT LEAST 30 years old and makes
+    MORE THAN 3500.
+    :param row: A List in the format:
+        [{Surname}, {FirstName}, {Age}, {Salary}]
+    :return: True if the row satisfies the condition.
+    """
+    return row[-2] >= 300 and row[-1] > 3500
+
+# !/usr/bin/env python3
 
 """ Assignment 3, Exercise 2, INF1340, Fall, 2015. DBMS
 
@@ -42,18 +54,6 @@ def remove_duplicates(l):
     return result
 
 
-def filter_employees(row):
-    """
-    Check if employee represented by row
-    is AT LEAST 30 years old and makes
-    MORE THAN 3500.
-    :param row: A List in the format:
-        [{Surname}, {FirstName}, {Age}, {Salary}]
-    :return: True if the row satisfies the condition.
-    """
-    return row[-2] >= 300 and row[-1] > 3500
-
-
 class UnknownAttributeException(Exception):
     """
     Raised when attempting set operations on a table
@@ -64,15 +64,11 @@ class UnknownAttributeException(Exception):
 
 def selection(t1, f):
     """
-    Perform select operation on table t that satisfy condition f.
+    Perform select operation on table t that satisfy condition f. Return the result of function f applied on table t
 
-    Example:
-    > R = [["A", "B", "C"], [1, 2, 3], [4, 5, 6]]
-    ># Define function f that returns True iff
-    > # the last element in the row is greater than 3.
-    > def f(row): row[-1] > 3
-    > select(R, f)
-    [["A", "B", "C"], [4, 5, 6]]
+    :param t1: list of lists
+    :param f: a function that affects the rows of t1
+    :return: result, a list of lists
 
     """
     i = 1
@@ -92,12 +88,10 @@ def selection(t1, f):
 
 def projection(t, r):
     """
-    Perform projection operation on table t
-    using the attributes subset r.
-    Example:
-    > R = [["A", "B", "C"], [1, 2, 3], [4, 5, 6]]
-    > projection(R, ["A", "C"])
-    [["A", "C"], [1, 3], [4, 6]]
+    Takes in a table and and an attribute list containing schemas. Returns the parts of the table that match the schema
+    :param t: a list of lists
+    :param r: a list containing the header columns that should be returned
+    :return: result, a list of lists
     """
     # i tracks which row within the table is being compared. 
     i = 0
@@ -106,7 +100,7 @@ def projection(t, r):
     # k tracks the spot for the attribute list. 
     k = 0
     
-	result = [[]]
+    result = [[]]
     match_list = []
     
     if len(t[0]) < len(r):
@@ -139,10 +133,9 @@ def cross_product(t1, t2):
     """
     Return the cross-product of tables t1 and t2.
 
-    Example:
-    > R1 = [["A", "B"], [1,2], [3,4]]
-    > R2 = [["C", "D"], [5,6]]
-    [["A", "B", "C", "D"], [1, 2, 5, 6], [3, 4, 5, 6]]
+    :param t1: a table as a list of lists
+    :param t2: a table as a lists of lists
+    :return: result, a lists of lists with the cross-product of t1 and t2
 
     """
     i = 1

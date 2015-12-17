@@ -6,7 +6,7 @@ Test module for exercise3.py
 
 """
 from exercise1 import selection, projection, cross_product
-
+import pytest
 
 ###########
 # TABLES ##
@@ -83,22 +83,22 @@ def test_selection():
     assert selection(R3, filter_employees) is None
 
 
-# def test_projection():
-#     """
-#     Test projection operation.
-#     """
-#
-#     result = [["Surname", "FirstName"],
-#               ["Smith", "Mary"],
-#               ["Black", "Lucy"],
-#               ["Verdi", "Nico"],
-#               ["Smith", "Mark"]]
-#
-#     assert is_equal(result, projection(EMPLOYEES, ["Surname", "FirstName"]))
-#     assert projection(GRADUATES, ) is None
-#     assert projection(R3, filter_employees()) is None
-# #
-#
+def test_projection():
+    """
+    Test projection operation.
+    """
+
+    result = [["Surname", "FirstName"],
+              ["Smith", "Mary"],
+              ["Black", "Lucy"],
+              ["Verdi", "Nico"],
+              ["Smith", "Mark"]]
+
+
+    assert is_equal(result, projection(EMPLOYEES, ["Surname", "FirstName"]))
+    assert (projection(EMPLOYEES, ["Surname", "MiddleName", "FirstName"])) is AttributeError
+
+
 def test_cross_product():
     """
     Test cross product operation.
