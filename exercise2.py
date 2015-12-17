@@ -151,6 +151,20 @@ def decide(input_file, countries_file):
         if country_dictionary[country]["medical_advisory"] != "":
             medical_alert.append(country_dictionary[country]["code"])
 
+    # Create a list of countries requiring visit visas
+
+    visa_list = []
+    for country in country_dictionary:
+        if country_dictionary[country]["visitor_visa_required"] == 1:
+            visa_list.append(country_dictionary[country]["code"])
+
+    # # Create a list of countries requiring transit visas
+    #
+    # transit_list = []
+    # for country in country_dictionary:
+    #     if country_dictionary[country]["transit_visa_required"] == 1:
+    #         transit_list.append(country_dictionary[country]["code"])
+
     while a < len(entry_record):
         # create a list to store the decision for each check within a record
         decision = []
@@ -177,9 +191,6 @@ def decide(input_file, countries_file):
                     decision.append("Reject")
                 else:
                     decision.append("Accept")
-
-# REQUIRED_FIELDS = ["passport", "first_name", "last_name",
-#                    "birth_date", "home", "entry_reason", "from"]
         # Step 2. Check all locations
         if entry_record[a]["from"]["country"] not in country_list:
             decision.append("Reject")
@@ -196,10 +207,13 @@ def decide(input_file, countries_file):
             decision.append("Reject")
         # Step 4. Check if any visitors have a valid visa
         if entry_record[a]["entry_reason"] == "visit":
-            if valid_date_format(entry_record[a]["visa"]["date"]):
-                if is_more_than_x_years_ago(2, entry_record[a]["visa"]["date"]):
+            # Enter code to check if visitor visa == 1
+            if entry_record[a]["from"]["country"] in visa_list:
+                if valid_date_format(entry_record[a]["visa"]["date"]):
+                    if is_more_than_x_years_ago(2, entry_record[a]["visa"]["date"]):
+                        decision.append("Reject")
+                else:
                     decision.append("Reject")
-
         # Step 5. Check if anyone is coming from a country with a medical alert
         if entry_record[a]["from"]["country"] in medical_alert:
             decision.append("Quarantine")
@@ -233,6 +247,10 @@ def decide(input_file, countries_file):
         # Reject the entry if the reason for the entry is not returning or visit
         if entry_record[a]["entry_reason"] not in ["visit", "returning"]:
             decision.append("Reject")
+
+        # # Reject the entry if they do not have the appropriate transit visa
+        # if entry_record["entry_reason"] != "returning"
+        #     if entry_record["from"]["country"] in transit_list:
 
         # Come up with a final decision
         if "Quarantine" in decision:
