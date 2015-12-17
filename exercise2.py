@@ -163,13 +163,6 @@ def decide(input_file, countries_file):
         if country_dictionary[country]["visitor_visa_required"] == 1:
             visa_list.append(country_dictionary[country]["code"])
 
-    # # Create a list of countries requiring transit visas
-    #
-    # transit_list = []
-    # for country in country_dictionary:
-    #     if country_dictionary[country]["transit_visa_required"] == 1:
-    #         transit_list.append(country_dictionary[country]["code"])
-
     while a < len(entry_record):
         # create a list to store the decision for each check within a record
         decision = []
@@ -252,10 +245,6 @@ def decide(input_file, countries_file):
         # Reject the entry if the reason for the entry is not returning or visit
         if entry_record[a]["entry_reason"] not in ["visit", "returning"]:
             decision.append("Reject")
-
-        # # Reject the entry if they do not have the appropriate transit visa
-        # if entry_record["entry_reason"] != "returning"
-        #     if entry_record["from"]["country"] in transit_list:
 
         # Come up with a final decision
         if "Quarantine" in decision:
